@@ -1,0 +1,160 @@
+.wide {
+    width:850px;
+}
+
+.ground {
+    font-size:small;
+    background-color: #F3F3F3;
+    border:1px solid #808080;
+    margin:10px 0;
+}
+
+
+#header,#main {}
+
+#footer {
+/*     height:30px; */
+}
+
+.inner {
+    padding:5px;
+}
+
+#logo {
+
+}
+
+#name {
+    margin-left:30px;
+    display:inline;
+    font-size:3.1em;
+    font-family: verdana, sans-serif;
+}
+
+.name {
+    font-size:50px;
+    font-family: verdana, sans-serif;
+}
+
+#uriform {
+    float:left;
+}
+
+#input-uri {
+    display:inline;
+    margin-left:40px;
+}
+
+#info,.info {
+    float:right;
+    font-size:small;
+    background-color: #EBEBEB;
+    border:1px solid #808080;
+    width:200px;
+    height:100px;
+}
+
+.supports {
+    font-size:small;
+    background-color: #EBEBEB;
+    border:1px solid #808080;
+    padding:5px 5px 5px 5px;
+    width:600px;
+}
+
+.info_inner  {
+    padding:10px;
+    text-align:right;
+    margin-top:22px;
+}
+
+.footer_inner {
+     padding:5px;
+}
+
+/*.maintb {
+    font-size:small;
+    background-color: #F3F3F3;
+    border:1px solid #808080;
+    margin-top:1pt;
+}*/
+
+.propLabel {
+    font-weight: bold;
+    font-size: small;
+}
+
+.propValue {
+    font-size: small;
+    border:1px solid #808080;
+    background-color: #F8F8F8;
+    margin: 5px 5px 5px 5px;
+    padding: 2px 2px 2px 2px;
+}
+
+
+
+
+
+/*old*/
+.foafHd {
+font-size:small;
+}
+
+.foafHdProp {
+border:1px solid #808080;
+background-color: #F8F8F8;
+margin: 5px 5px 5px 5px;
+padding: 2px 2px 2px 2px;
+
+}
+
+.foafExt {
+font-size:small;
+background-color: #EBEBEB;
+border:1px solid #808080;
+/* border-top:none; */
+}
+
+.foafProp {
+border:1px solid #808080;
+background-color: #F8F8F8;
+margin: 5px 5px 5px 5px;
+padding: 5px 5px 5px 5px;
+overflow:hidden;
+}
+
+.propName {
+font-weight: bold;
+}
+
+.relation {
+    color:#939183;
+    font-weight:bold; 
+    font-style:italic;
+}
+
+.propRowKnows {
+    width:220px;
+    float:left;
+}
+
+* html .propRowKnows {
+    width:210px;
+}
+
+.knowsRowInner {
+   width:230px;
+}
+
+.propRow {
+    width:315px;
+    float:left;
+}
+
+.api_target {
+    display:none;
+    border:1px solid #808080;
+    background:#F3F3F3;
+    margin-bottom:0px;
+}
