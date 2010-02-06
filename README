@@ -1,15 +1,17 @@
 FOAFer
 ======
 
-This is the source code running foafer.org
+This is the source code running foafer.org. 
 
-FOAFer displays most foaf resources in a somehow readable form.
+FOAFer displays (most) foaf resources in a somehow readable form.
 
-The scripts are intended to run on the Google Appengne, therefore some things are not 
-made in the best possible way. For example,the is AFAIK no way to run Sparql on the 
-Appengine. So parsing the Triples is made via some sort of dict lookups.
+The scripts are intended to run on the Google Appengine, therefore some things are not 
+made in the best possible manner. For example, there is AFAIK no way to run SPARQL on the 
+Appengine. So parsing the triples is made via a horrible unintuitive way of dict lookups.
 
-Feel free to change it, this is released under the GNU Affero General Public License V3.
+Feel free to change this!
+
+This is released under the GNU Affero General Public License V3.
 
 
 Installation
