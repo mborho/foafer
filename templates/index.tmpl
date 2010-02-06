@@ -1,0 +1,192 @@
+<%include file="header.tmpl"/>
+
+% if rdfuri not in ["about","start"] and foafer is not None:
+    <div id="main" class="ground wide">
+        <div class="inner">
+            <div>
+                    <a href="${rdfuri}"><img src="/static/images/foafTiny.gif" border="0" style="margin-top:2px;"/></a>
+                    <a href="http://demo.openlinksw.com/rdfbrowser/?uri=${rdfuri|u}" target="_blank"><img src="/static/images/openlink.png" border="0" style="margin-top:2px;"/></a>
+                    <a href="http://dataviewer.zitgist.com/?uri=${rdfuri|u}" target="_blank"><img src="/static/images/zitgist.png" border="0" style="margin-top:2px;"/></a>
+                    -> ${rdfuri}
+            </div>
+            <div style="width:800px;">
+            <!--div style="float:left;padding-top:5px;border:1px solid #000;"-->
+                <table>
+                <tr><td>
+                    <table width="480">
+                    %if foafer.name:
+                        <tr><td class="propLabel">Name:</td>
+                        <td class="propValue">${foafer.name}</td></tr>
+                    % endif
+                    % if foafer.nick:
+                        <tr>
+                            <td class="propLabel">Nick:</td>
+                            <td class="propValue">
+                            % for a in foafer.nick:
+                                <a href="${a}">${a}</a><br/>
+                            % endfor
+                            </td>
+                        </tr>
+                    % endif
+                    % if foafer.firstname:
+                        <tr><td class="propLabel">Firstname:</td>
+                        <td class="propValue">${foafer.firstname}</td></tr>
+                    % endif
+                    % if foafer.surname:
+                        <tr><td class="propLabel">Surname:</td>
+                        <td class="propValue">${foafer.surname}</td></tr>
+                    % endif
+                    % if foafer.givenname:
+                        <tr><td class="propLabel">Givenname:</td>
+                        <td class="propValue">${foafer.givenname}</td></tr>
+                    % endif
+                    % if foafer.family_name:
+                        <tr><td class="propLabel">Family Name:</td>
+                        <td class="propValue">${foafer.family_name}</td></tr>
+                    % endif
+                    % if foafer.mbox_sum:
+                        <tr>
+                            <td class="propLabel">MBOX_SHA1SUM:</td>
+                            <td class="propValue">
+                            % for a in foafer.mbox_sum:
+                                <a href="${a}">${a}</a><br/>
+                            % endfor
+                            </td>
+                        </tr>
+                    % endif    
+                      
+    
+                    <%include file="_weblogs.tmpl"/>
+    
+                    <%include file="_messengers.tmpl"/>
+    
+                    % if foafer.openids:
+                        <tr>
+                            <td class="propLabel">OpenId:</td>
+                            <td class="propValue">
+                            % for a in foafer.openids:
+                                <a href="${a}">${a}</a><br/>
+                            % endfor
+                            </td>
+                        </tr>
+                    % endif
+                    
+                    <%include file="_accounts.tmpl"/>
+    
+                    % if foafer.geekcode:
+                        <tr><td class="propLabel">Geekcode:</td>
+                        <td class="propValue">${foafer.geekcode}</td></tr>
+                    % endif    
+                    
+                    % if foafer.myers:
+                        <tr><td class="propLabel">myersBriggs:</td>
+                        <td class="propValue">${foafer.myers}</td></tr>
+                    % endif
+                    
+                    % if foafer.plan:
+                        <tr><td class="propLabel">Plan:</td>
+                        <td class="propValue">${foafer.plan}</td></tr>
+                    % endif
+    
+                    % if foafer.langs:
+                        <tr><td class="propLabel">Languages:</td><td class="propValue">
+                        % if foafer.langs.has_key('masters'):
+                            <b>masters:</b>${','.join(foafer.langs["masters"])}<br/>
+                        % endif
+                        % if foafer.langs.has_key('speaks'):
+                            <b>speaks:</b>${','.join(foafer.langs["speaks"])}<br/>
+                        % endif
+                        % if foafer.langs.has_key('reads'):
+                            <b>reads:</b>${','.join(foafer.langs["reads"])}<br/>
+                        % endif
+                        % if foafer.langs.has_key('writes'):
+                            <b>writes:</b>${','.join(foafer.langs["writes"])}<br/>
+                        % endif
+                    % endif
+    
+                    % if foafer.basedNear:
+                        % for p in foafer.basedNear:
+                            <tr>
+                                <td class="propLabel">based near:</td>
+                                <td class="propValue"  style="height:275px;" valign="top">
+                                <b>${p['lat']} / ${p['long']}</b> Latitude/Longitude<br />
+                            <%'''% if dev == False:'''%>
+                                <div id="mapContainer" style="display:none">
+                            
+                                </div>
+                            <%'''% endif'''%>
+                                </td>
+                            </tr>
+                        % endfor
+                    % endif
+    
+    
+                    </table>
+                </td>
+                    % if foafer.depiction:
+                        % for p in foafer.depiction:
+                            <td width="280" align="center">
+                            % if p.get('data'):
+                                <div align="center" class="propValue"><img src="${p['url']}" onload="setImgSize(this)" /><br />
+                                <b>${p['title']}</b><br/>${p['desc']}</div>
+                            % elif p.get('url'):
+                                <img src="${p['url']}" border="0" onload="setImgSize(this)" />
+                            % endif
+                            </td>
+                        % endfor
+                    % endif
+                </tr></table>
+            <!--/div-->
+    
+            <%'''$#<div style="width:260px;float:left;text-align:center;margin-bottom:5px;border:1px solid #000;">
+            $#$if foafer.depiction:
+            $#    $for p in foafer.depiction:
+            $#        $if p.has_key('data'):
+            $#            <div align="center" class="propValue"><img src="$p['url']" onload="setImgSize(this)" /><br />
+            $#            <b>$p['title']</b><br/>$p['desc']</div>
+            $#        $else:
+            $#            <img src="$p['url']" border="0" onload="setImgSize(this)" />
+            </div>'''%>
+            <br clear="all"/>        
+            </div>
+        </div>
+    </div>    
+
+    % if foafer.interests or foafer.made or foafer.currentProjects or foafer.pastProjects or foafer.maintains or foafer.knows:
+        <div style="width:850px;" class="foafExt">
+            <%include file="_knows.tmpl"/>
+            <%include file="_projects.tmpl"/>
+            <%include file="_interests.tmpl"/>
+        <br clear="all"/>
+        </div>
+    % endif 
+    
+    % if foafer.basedNear:
+        % for p in foafer.basedNear:
+            <div id="mapTemp" style="display:none">
+                <script src="/static/js/gmapez-2.5.js" type="text/javascript"></script>
+                <div class="GMapEZ G_HYBRID_TYPE GSmallMapControl GMapTypeControl" id="foafermap" style="width:300px;height:250px;margin:auto;">
+                <a href="http://maps.google.com/maps?ll=${p['lat']},${p['long']}&amp;spn=0.276296,0.654270&amp;t=k&amp;hl=en"></a>
+                </div>
+            </div>
+        % endfor
+        <script type="text/javascript">
+                document.getElementById('mapContainer').innerHTML = document.getElementById('mapTemp').innerHTML;
+                document.getElementById('mapTemp').innerHTML = '';
+                document.getElementById('mapContainer').style.display = 'block';
+        </script>
+    % endif    
+    
+% elif rdfuri == "start":
+    
+    <div style="margin-left:135px;margin-top:50px;margin-bottom:100px;">
+        <form action="" method="get">
+            <a href="/"><img src="static/images/foaf3.jpg" border="0" id="logo" /></a>
+            <div id="name">FOAFer</div><br/>
+            <div id="input-uri">Please enter a FOAF-Resource: <input type="text" name="file" size="30" value="http://"/><input type="submit" value="go"/></div>
+        </form>
+    </div>
+    
+% endif
+
+<%include file="footer.tmpl"/>

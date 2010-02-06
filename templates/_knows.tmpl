@@ -1,0 +1,68 @@
+% if foafer.knows:
+    <div class="propRowKnows">
+    % if foafer.knows:
+        &nbsp;<b>knows:</b><br/>
+        % for k in foafer.knows:
+            % if k.get('name') or k.get('firstname') or k.get('surname') or k.get('mbox_sum') or k.get('nick') or k.get('weblogs') or k.get('homepage') or k.get('workHomepage') or k.get('schoolpage') or k.get('seeAlso'):
+                <div class="foafProp">
+                    % if foafer.relations:
+                        % if foafer.relations.has_key(k['uri']):
+                            % for rel in foafer.relations[k['uri']]:
+                                <span class="relation">${rel['label']}</span><br>
+                            % endfor
+                        % endif
+                    % endif                                
+                    % if k.get('name'):
+                        <b>${k['name']}</b>
+                    % elif k.get('firstname') or k.get('surname'):
+                        <b>${k.get('firstname')} ${k.get('surname')}</b>
+                    % elif k.get('mbox_sum') and not k.get('accounts'):
+                        <b>${k['mbox_sum']}</b>
+                    % endif                    
+                    % if k.get('nick'):
+                        <i>${k['nick']}</i>
+                    % elif k.get('accounts'):
+                        <div>
+                            <i>${k.get('accounts')[0].get('name')}</i>
+                        </div>
+                    % endif                        
+                    % if k.get('name') or k.get('firstname') or k.get('surname') or k.get('mbox_sum') or k.get('nick'):
+                        &nbsp;<br/>
+                    % endif                        
+                    % if k.has_key('weblogs'):
+                        % for w in k['weblogs']:
+                            <div>
+                                <a href="${w['uri']}" target="_blank">weblog</a>
+                                ${getRssContainer(w.get('uri'))}
+                            </div>
+                        % endfor                            
+                    % endif                            
+                    % if k.has_key('homepage'):
+                        % for w in k['homepage']:
+                            <div><a href="${w['uri']}" target="_blank">homepage</a>${getRssContainer(w.get('uri'))}</div>
+                        % endfor                            
+                    % endif                            
+                    % if k.has_key('workHomepage'):
+                        % for w in k['workHomepage']:
+                            <div><a href="${w['uri']}" target="_blank">workplace-homepage</a></div>
+                        % endfor                            
+                    % endif                            
+                    % if k.has_key('schoolpage'):
+                        % for w in k['schoolpage']:
+                            <div><a href="${w['uri']}" target="_blank">school-homepage</a></div>
+                        % endfor
+                    % endif                            
+                    % if k.has_key('seeAlso'):
+                        <a href="${k['seeAlso']|u}"><img src="/static/images/foafTiny-12.gif" border="0" style="margin-top:2px;"/></a>
+                        <a href="http://demo.openlinksw.com/rdfbrowser/?uri=${k['seeAlso']|u}" target="_blank"><img src="/static/images/openlink-12.png" border="0" style="margin-top:2px;"/></a>
+                        <a href="http://dataviewer.zitgist.com/?uri=${k['seeAlso']|u}" target="_blank"><img src="/static/images/zitgist-12.png" border="0" style="margin-top:2px;"/></a>
+                        -><a href="?file=${k['seeAlso']|u}">browse</a><br>
+                    % endif
+                </div>
+            % endif
+        % endfor    
+    % endif                
+% endif
+% if foafer.knows:
+    </div>
+% endif    

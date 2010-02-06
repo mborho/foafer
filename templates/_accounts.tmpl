@@ -1,0 +1,183 @@
+% if foafer.accounts:
+    <tr><td class="propLabel">Accounts:</td><td class="propValue">
+    % for a in foafer.accounts:
+        <% 
+        if a.get('page'): url = a['page']
+        else: url = ''
+        %>
+        
+        % if a['homepage'].find('del.icio.us') > -1:
+            <%
+             if url == '':
+                url = a['homepage'] + str(a['name'])
+            %>
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/delicious.gif" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i>${getRssContainer(url)}<br/>
+        % elif a['homepage'].find('bm.doomicile.de') > -1:
+            <% 
+            if url == '':
+                url = a['homepage'] + 'bookmarks/' + str(a['name'])
+            %>
+            <a href="${a['homepage']}${a['name']}" title="${a['homepage']}">\
+            <img src="static/images/doomicile.png" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i>${getRssContainer(url)}<br/>
+        % elif a['homepage'].find('identi.ca') > -1:
+            <% 
+            if url == '':
+                url = a['homepage'] + str(a['name'])
+            %>
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/identica.png" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i>${getRssContainer(url)}<br/>
+        % elif a['homepage'].find('livejournal') > -1:
+            <% 
+            if url == '':
+                url = 'http://' + str(a['name']) + '.livejournal.com'
+            %>
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/livejournal.gif" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i>${getRssContainer(url)}<br/>
+        % elif a['homepage'].find('flickr') > -1:
+            <%
+            if url == '':
+                url = a['homepage'] + 'photos/' + str(a['name'])
+            %>
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/flickr.gif" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i>${getRssContainer(url)}<br/>
+        % elif a['homepage'].find('twitter.com') > -1:
+            <% 
+            if url == '':
+                url = a['homepage'] + str(a['name'])
+            %>
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/twitter.png" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i>${getRssContainer(url)}<br/>
+        % elif a['homepage'].find('last.fm') > -1:
+            <% 
+            if url == '':
+                url = a['homepage'] + 'user/' + str(a['name'])
+            %>
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/lastfm.png" border="0" alt="${a['homepage']}" /></a> \
+            <% rss = 'http://ws.audioscrobbler.com/1.0/user/' + str(a['name']) + '/recenttracks.rss' %>
+            <i>${a['name']}</i>${getRssContainer(rss)}<br/>
+        % elif a['homepage'].find('digg.com') > -1:
+            <% 
+            if url == '':
+                url = a['homepage'] + 'users/' + str(a['name'])
+            %>
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/digg.png" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>
+        % elif a['homepage'].find('jabber.org') > -1:
+            <% if url == '': url = a['homepage'] %>    
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/jabber.png" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>
+        % elif a['homepage'].find('icq.com') > -1:
+            <% if url == '': url = a['homepage'] %>    
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/icq.png" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>
+        % elif a['homepage'].find('messenger.msn') > -1:
+            <% if url == '': url = a['homepage'] %>                    
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/msn.png" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>
+        % elif a['homepage'].find('messenger.yahoo') > -1:
+            <% if url == '': url = a['homepage'] %>    
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/yahoo.png" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>
+        % elif a['homepage'].find('technorati') > -1:
+            <% 
+            if url == '':
+                url = a['homepage'] + 'people/technorati/' + str(a['name'])
+            %>
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/technorati.jpg" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>  
+        % elif a['homepage'].find('deviantart') > -1:
+            <% 
+            if url == '': 
+                url = 'http://' + str(a['name']) + '.deviantart.com/'
+            %>
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/deviantart.png" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/> 
+        % elif a['homepage'].find('linkedin.com') > -1:
+            <% 
+            if url == '':
+                url = a['homepage'] + 'profile?viewProfile=&amp;key=' + str(a['name'])
+            %>                
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/linkedin.png" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>         
+        % elif a['homepage'].find('upcoming') > -1:
+            <% if url == '': url = a['homepage'] %>    
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/upcoming.jpg" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>
+        % elif a['homepage'].find('wordpess') > -1:
+            <% if url == '': url = a['homepage'] %>    
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/wordpress.png" border="0" alt="${a['homepage']}"/></a> \
+            <i>${a['name']}</i><br/>
+        % elif a['homepage'].find('wikipedia') > -1:
+            <% if url == '': url = a['homepage'] %>    
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/wikipedia.png" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>
+        % elif a['homepage'].find('audioscrobbler') > -1:
+            <% if url == '': url = a['homepage'] %>    
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/audioscrobbler.gif" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>
+        % elif a['homepage'].find('skype') > -1:
+            <% if url == '': url = a['homepage'] %>      
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/skype.gif" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>        
+        % elif a['homepage'].find('bloglines') > -1:
+            <% if url == '': url = a['homepage'] %>      
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/bloglines.gif" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>
+        % elif a['homepage'].find('myspace') > -1:
+            <% if url == '': url = a['homepage'] %>      
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/myspace.gif" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>
+        % elif a['homepage'].find('plazes') > -1:
+            <% if url == '': url = a['homepage'] %>      
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/plazes.png" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>
+        % elif a['homepage'].find('friendster') > -1:
+            <% if url == '': url = 'http://profiles.friendster.com/' + str(a['name']) %>
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/friendster.gif" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>      
+        % elif a['homepage'].find('openfaq') > -1:
+            <% if url == '': url = a['homepage'] %>      
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/openfaq.png" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>
+        % elif a['homepage'].find('facebook') > -1:
+            <% if url == '': url = a['homepage'] %>      
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/facebook.png" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>
+        % elif a['homepage'].find('twoday') > -1:
+            <% if url == '': url = a['homepage'] %>      
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/twoday.png" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>                
+        % else:
+            <a href="${a['homepage']}">${a['homepage']}</a> <i>${a['name']}</i><br/>
+        % endif
+    % endfor    
+    </td></tr>
+% endif

@@ -1,0 +1,32 @@
+<%include file="header.tmpl"/>
+
+<div style="margin-left:100px">
+    <br /><br /><b>FOAFer supports the following FOAF properties:</b><br /><br/>
+    for the foaf-file-owner:<br />
+    <div class="supports">
+    accountName | accountServiceHomepage | aimChatID | currentProject | depiction | firstName | geekcode | holdsAccount | homepage | icqChatID | image | interest | jabberID | knows | made | mbox_sha1sum | msnChatID | myersBriggs | name | nick | openid | pastProject | plan | schoolHomepage | surname | weblog | workInfoHomepage | workplaceHomepage | yahooChatID
+    </div>
+    <br />
+    for persons, the foaf-file-owner knows:<br/>
+    <div class="supports">
+    firstName | homepage | mbox_sha1sum | name | nick | surname | weblog | workplaceHomepage
+    </div>
+
+    <br />
+    <b>Following vocabularies:</b><br/>
+    <div class="supports">
+    <a href="http://vocab.org/relationship/">http://purl.org/vocab/relationship/</a> - RELATIONSHIP: A vocabulary for describing relationships between people<br/><br/>
+    <a href="http://purl.org/net/inkel/rdf/schemas/lang/1.1#">http://purl.org/net/inkel/rdf/schemas/lang/1.1#</a> - A vocabulary to express the languages a Person can speak, read or write<br/>
+    </div>
+    <%'''
+    $#<br />
+    $#<b>FOAFer can't handle</b> <small>( by now )</i></small></s><br />
+    $#<div class="supports" style="width:300px; padding:5px 5px 5px 5px">
+    $#<s>- japanese charsets</s><br />
+    $#<s>- references inside the document</s><br />
+    $#<s>- more than one occurrence of a foaf-property, except <i>knows</i>, <i>interest</i>, <i>currentProject</i> and <i>pastProject</i></s><br />
+    $#</div>'''%>
+    </div>
+    <br /><br />
+    
+<%include file="footer.tmpl"/>

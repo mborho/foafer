@@ -1,0 +1,110 @@
+
+% if foafer.weblogs:
+    % for w in foafer.weblogs:
+        <tr>
+            <td class="propLabel">Weblog:</td>
+            <td class="propValue">
+                <a  href="${w['uri']}">
+                % if w.get('label'):
+                    ${w['label']}
+                % elif w.get('title'):
+                    ${w['title']}
+                % else:
+                    ${w['uri']}
+                % endif                    
+                </a>${getRssContainer(w.get('uri'))}<br/>
+                % if w.get('desc'):
+                    ${w['desc']}
+                % endif                    
+            </td>
+        </tr>
+    % endfor
+% endif        
+
+% if foafer.homepages:
+   <tr>
+        <td class="propLabel">Homepage:</td>
+        <td class="propValue">
+        % for w in foafer.homepages:
+            <a  href="${w['uri']}">
+            % if w.get('label'):
+                ${w['label']}
+            % elif w.get('title'):
+                ${w['title']}
+            % else:
+                ${w['uri']}
+            % endif                    
+            </a>${getRssContainer(w.get('uri'))}<br/>
+            % if w.get('desc'):
+                ${w['desc']}
+            % endif  
+        % endfor
+        </td>
+    </tr>
+% endif
+
+% if foafer.workplaces:
+   <tr>
+        <td class="propLabel">Workplace:</td>
+        <td class="propValue">
+        % for w in foafer.workplaces:
+            <a  href="${w['uri']}">
+            % if w.get('label'):
+                ${w['label']}
+            % elif w.get('title'):
+                ${w['title']}
+            % else:
+                ${w['uri']}
+            % endif                    
+            </a>${getRssContainer(w.get('uri'))}<br/>
+            % if w.get('desc'):
+                ${w['desc']}
+            % endif  
+        % endfor
+        </td>
+    </tr>
+% endif
+
+% if foafer.workinfos:
+   <tr>
+        <td class="propLabel">Workinfo:</td>
+        <td class="propValue">
+        % for w in foafer.workinfos:
+            <a  href="${w['uri']}">
+            % if w.get('label'):
+                ${w['label']}
+            % elif w.get('title'):
+                ${w['title']}
+            % else:
+                ${w['uri']}
+            % endif                    
+            </a>${getRssContainer(w.get('uri'))}<br/>
+            % if w.get('desc'):
+                ${w['desc']}
+            % endif  
+        % endfor
+        </td>
+    </tr>
+% endif
+
+% if foafer.schoolpages:
+   <tr>
+        <td class="propLabel">School:</td>
+        <td class="propValue">
+        % for w in foafer.schoolpages:
+            <a  href="${w['uri']}">
+            % if w.get('label'):
+                ${w['label']}
+            % elif w.get('title'):
+                ${w['title']}
+            % else:
+                ${w['uri']}
+            % endif                    
+            </a>${getRssContainer(w.get('uri'))}<br/>
+            % if w.get('desc'):
+                ${w['desc']}
+            % endif  
+        % endfor
+        </td>
+    </tr>
+% endif        

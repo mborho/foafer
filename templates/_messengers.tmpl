@@ -1,0 +1,22 @@
+
+% if foafer.messengers:
+    % for name in foafer.messengers:
+        <tr><td class="propLabel">${name}:</td><td class="propValue">
+        % for id in foafer.messengers[name]:
+            % if name == 'jabberID':
+                <img src="static/images/jabber.png" border="0" />
+            % elif name == 'icqChatID':
+                <img src="static/images/icq.png" border="0" />
+            % elif name == 'msnChatID':
+                <img src="static/images/msn.png" border="0" />
+            % elif name == 'yahooChatID':
+                <img src="static/images/yahoo.png" border="0" />
+            % elif name == 'aimChatID':
+                <img src="static/images/aim.png" border="0" />
+            % endif
+            ${id}<br/>
+        % endfor
+        </td>
+        </tr>
+    % endfor
+% endif  

@@ -1,0 +1,17 @@
+<%include file="header.tmpl"/>
+
+<div id="main" class="wide ground">
+    <div class="inner">
+    % if errors:
+        <div><img src="/static/images/foafTiny.gif" border=0 /> -> ${rdfuri}</div>
+        <div style="margin-left:10px;padding-top:5px;">
+            <b>Errors:</b><br/>
+            % for e in errors:
+                ${e} <br/>
+            % endfor
+        </div>
+    % endif
+    </div>
+</div>
+
+<%include file="footer.tmpl"/>

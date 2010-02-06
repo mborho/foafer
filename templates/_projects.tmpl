@@ -1,0 +1,158 @@
+
+% if foafer.made or foafer.currentProjects or foafer.pastProjects or foafer.maintains:
+    <div class="propRow">
+% endif
+
+% if foafer.currentProjects:
+    &nbsp;<b>current projects:</b><br/>
+    % for i in foafer.currentProjects:
+        <div class="foafProp">
+        % if i.get('homepage'):
+            <a href="${i['homepage']}">
+        % elif i.get('doappage'):
+            <a href="${i['doappage']}">        
+        % elif i.get('uri'):
+            <a href="${i['uri']}">
+        % endif
+        
+        % if i.get('label'):
+            ${i['label']}
+        % elif i.get('title'):
+            <b>${i['title']}</b>
+        % elif i.get('doapname'):
+            <b>${i['doapname']}</b>                
+        % elif i.get('name'):
+            <b>${i['name']}</b>
+        % elif i.get('doappage'):
+            ${i['doappage']}        
+        % elif i.get('uri'):
+            ${i['uri']}
+        % endif
+        
+        % if i.get('uri') or i.get('homepage') or i.get('doappage'):
+            </a>
+        % endif
+        <br/>
+        % if i.get('desc'):
+            ${i['desc']}<br/>
+        % endif            
+        % if i.get('topic'):
+            <i>${i['topic']}</i><br/>
+        % endif            
+        % if i.get('type'):
+            <i><small>${i['type']}</small></i>
+        % endif            
+        </div>
+    % endfor
+% endif
+
+% if foafer.maintains:
+    &nbsp;<b>maintainer of:</b><br/>
+    % for i in foafer.maintains:
+        <div class="foafProp">
+        % if i.get('homepage'):
+            <a href="${i['homepage']}">
+        % elif i.get('uri'):
+            <a href="${i['uri']}">
+        % endif
+        % if i.get('label'):
+            ${i['label']}                     
+        % elif i.get('title'):
+            <b>${i['title']}</b>
+        % elif i.get('name'):
+            <b>${i['name']}</b>
+        % elif i.get('homepage_title'):
+            <b>${i['homepage_title']}</b>
+        % elif i.get('homepage'):
+            ${i['homepage']}        
+        % elif i.get('uri'):
+            ${i['uri']}
+        % endif
+        % if i.get('uri') or i.get('homepage'):
+            </a>
+        %  endif
+        <br/>
+        % if i.get('desc'):
+            ${i['desc']}<br/>
+        % endif
+        % if i.get('type'):
+            <i><small>${i['type']}</small></i>
+        % endif
+        </div>
+    % endfor
+% endif
+                    
+% if foafer.pastProjects:
+    &nbsp;<b>past projects:</b><br/>
+    % for i in foafer.pastProjects:
+        <div class="foafProp">
+        % if i.get('homepage'):
+            <a href="${i['homepage']}" title="${i['homepage']}">
+        % elif i.get('doappage'):
+            <a href="${i['doappage']}" title="${i['doappage']}">
+        % elif i.get('uri'):
+            <a href="${i['uri']}" title="${i['uri']}">
+        % endif               
+        % if i.get('label'):
+            ${i['label']}
+        % elif i.get('title'):
+            <b>${i['title']}</b>
+        % elif i.get('doapname'):
+            <b>${i['doapname']}</b>
+        % elif i.get('doappage'):
+            ${i['doappage']}
+        % elif i.get('uri'):
+            ${i['uri']}
+        % endif            
+        % if i.get('uri') or i.get('homepage') or i.get('doappage'):
+            </a>
+        % endif            
+        <br/>
+        % if i.get('desc'):
+            ${i['desc']}<br/>
+        % endif            
+        % if i.get('topic'):
+            <i>${i['topic']}</i><br/>
+        % endif            
+        % if i.get('type'):
+            <i><small>${i['type']}</small></i>
+        % endif
+        </div>
+    % endfor
+% endif
+                
+% if foafer.made:
+    &nbsp;<b>made:</b><br/>
+    % for i in foafer.made:
+        <div class="foafProp">
+        % if i.get('uri'):
+            <a href="${i['uri']}" title="${i['uri']}">
+        % endif            
+        % if i.get('label'):
+            ${i['label']}
+        % elif i.get('title'):
+            <b>${i['title']}</b>
+        % elif i.get('uri'):
+            ${i.get('uri')}
+        % endif        
+        % if i.get('uri'):
+            </a>
+        % endif            
+        <br/>
+        % if i.get('desc'):
+            ${i['desc']}<br/>
+        % endif            
+        % if i.get('topic'):
+            <i>{$i['topic']}</i><br/>
+        % endif            
+        % if i.get('type'):
+            <i><small>${i['type']}</small></i>
+        % endif
+        </div>
+    % endfor
+    <br/>
+% endif
+    
+% if foafer.made or foafer.currentProjects or foafer.pastProjects or foafer.maintains:
+    </div>
+% endif

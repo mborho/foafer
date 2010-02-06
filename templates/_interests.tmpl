@@ -1,0 +1,25 @@
+% if foafer.interests:
+    <div class="propRow">&nbsp;<b>interests:</b><br/>
+    % for i in foafer.interests:
+        <div class="foafProp">
+        % if i.get('uri'):
+            <a href="${i['uri']}" title="${i['uri']}">
+        % endif
+        % if i.get('label'):
+            ${i['label']}
+        % elif i.get('title'):
+            ${i['title']}
+        % elif i.get('uri'):
+            ${i.get('uri')}
+        % endif
+        % if i.get('uri'):
+            </a>
+        % endif
+        <br/>
+        % if i.get('desc'):
+            ${i['desc']}
+        % endif
+        </div>
+    % endfor
+    </div>
+% endif  
