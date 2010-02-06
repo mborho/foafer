@@ -79,9 +79,8 @@ class Relations(object):
             return ''
 
 class DataObj(object):
-    '''http://rdflib.net/rdflib-2.4.0/html/public/rdflib.syntax.parsers.ntriples-module.html#litinfo'''
     def __init__(self, dataStr):
-        if len(dataStr) > 0:
+        if len(dataStr) > 0:  
             self.dataStr = dataStr
         else:
             self.dataStr = ''
@@ -92,7 +91,7 @@ class DataObj(object):
             m =  re.match(r'"([^"]*)', self.dataStr)
             if m: string = m.group()
             self.string = string[1:]
-        return self.string
+        return self.string.decode('unicode_escape').encode('utf-8')
 
 class TriplePicker(object):
 
