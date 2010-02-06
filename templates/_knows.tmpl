@@ -53,7 +53,7 @@
                         % endfor
                     % endif                            
                     % if k.has_key('seeAlso'):
-                        <a href="${k['seeAlso']|u}"><img src="/static/images/foafTiny-12.gif" border="0" style="margin-top:2px;"/></a>
+                        <a href="${k['seeAlso']}"><img src="/static/images/foafTiny-12.gif" border="0" style="margin-top:2px;"/></a>
                         <a href="http://demo.openlinksw.com/rdfbrowser/?uri=${k['seeAlso']|u}" target="_blank"><img src="/static/images/openlink-12.png" border="0" style="margin-top:2px;"/></a>
                         <a href="http://dataviewer.zitgist.com/?uri=${k['seeAlso']|u}" target="_blank"><img src="/static/images/zitgist-12.png" border="0" style="margin-top:2px;"/></a>
                         -><a href="?file=${k['seeAlso']|u}">browse</a><br>
