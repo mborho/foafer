@@ -30,6 +30,8 @@ from rdf import http
 
 logging.getLogger().setLevel(logging.DEBUG)
 
+GMAP_KEY = 'PUT_YOUR_GMAP_KEY_HERE'
+
 TEMPLATE_PATH = os.path.dirname(__file__)+'/templates/'
 mylookup = TemplateLookup(directories=[TEMPLATE_PATH], input_encoding='utf-8', output_encoding='utf-8', encoding_errors='replace',default_filters=['decode.utf8'])
     
@@ -67,7 +69,7 @@ class MainPage(webapp.RequestHandler):
         if len(errors) == 0:
             try:
                 mytemplate = mylookup.get_template("index.tmpl")        
-                output = mytemplate.render(foafer=foafer,rdfuri=uri,getRssContainer=getRssContainer)            
+                output = mytemplate.render(foafer=foafer,rdfuri=uri,getRssContainer=getRssContainer, gmapkey=GMAP_KEY)            
             except:
                 logging.error("rendering failed: %s" % uri)
                 errors.append('Problems with foaf file')
