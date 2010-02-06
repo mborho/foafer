@@ -1,7 +1,7 @@
 import time
 import os
 import feedparser
-import json
+from django.utils import simplejson
 import re
 import urllib
 import logging
@@ -151,7 +151,7 @@ class Feed(object):
                     }
             jsonData['entries'].append(item)
         self.mime = "application/json"
-        self.output = json.write(jsonData)
+        self.output = simplejson.write(jsonData)
 
 def getData(urls, mode='auto'):
     source_list = []
