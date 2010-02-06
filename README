@@ -20,8 +20,16 @@ Installation
 Python modules required:
 
 * rdflib            http://www.rdflib.net/
-* feedparser        http://feedparser.org
+
+Download rdflib source package from http://www.rdflib.net/ and copy the folder
+./rdflib in your foafer app folder.   
+
+
 * mako templates    http://www.makotemplates.org/
+
+Download mako source package from http://www.makotemplates.org/download.html and copy the folder
+./lib/mako in your foafer app folder.    
+
 
 
 License
