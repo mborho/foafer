@@ -454,7 +454,7 @@ class Foafer(TriplePicker):
                                     pass
                         result.append(r)
                 elif resource:
-                    if not resource.startswith('<%s' % self.uri):
+                    if type(resource) is str and not resource.startswith('<%s' % self.uri):
                         # empty nodes-ids
                         r = {}
                         r['uri'] = self.cleanURI(resource)
