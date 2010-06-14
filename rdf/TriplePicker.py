@@ -22,7 +22,7 @@
 import re
 import logging
 import StringIO
-from rdflib.Graph import Graph
+from rdflib.graph import Graph
 
 logging.getLogger().setLevel(logging.DEBUG)
 
@@ -90,7 +90,7 @@ class DataObj(object):
         if not self.string:
             m =  re.match(r'"([^"]*)', self.dataStr)
             if m: string = m.group()
-            self.string = string[1:]
+            self.string = string[1:]            
         return self.string.decode('unicode_escape').encode('utf-8')
 
 class TriplePicker(object):
@@ -121,19 +121,19 @@ class TriplePicker(object):
 
     def buildTriples(self,n3):
         triples = []
-        for triple in  n3.split('.\n'):
-                lastChar = None
-                triplePart= []
-                part = []
-                for char in triple:
-                    if lastChar == " " and re.match('[\"\<\.\_]',char):
-                            triplePart.append("".join(part[:-1]))
-                            part = []
-                    part.append(char)
-                    lastChar = char
-                if triplePart:
-                        triplePart.append("".join(part))
-                        triples.append(triplePart[0:3])
+        for triple in  n3.split(' .\n'):
+            lastChar = None
+            triplePart= []
+            part = []
+            for char in triple:
+                if lastChar == " " and re.match('[\"\<\.\_]',char):
+                        triplePart.append("".join(part[:-1]))
+                        part = []
+                part.append(char)
+                lastChar = char
+            if triplePart:
+                    triplePart.append("".join(part))
+                    triples.append(triplePart[0:3])
         self.triples = triples
 
     def find(self, cond,multi=True):
