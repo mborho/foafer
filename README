@@ -19,7 +19,7 @@ Installation
 
 Python modules required:
 
-* rdflib            http://www.rdflib.net/
+* rdflib (>= 3.0.0)           http://www.rdflib.net/
 
 Download rdflib source package from http://www.rdflib.net/ and copy the folder
 ./rdflib in your foafer app folder.   
