@@ -46,7 +46,14 @@ class MainPage(webapp.RequestHandler):
     def get(self):
         foafer = None
         rdf = None
+        logging.debug("URI arguments:  "+str(self.request.arguments()))
         uri = self.request.get('file','start')
+        logging.debug("Loading FOAF file"+uri)
+        
+        #TODO -@mborho - How can we forward this property for allowing us customized tweaking of the _accounts.tmpl?
+        # ExampleURL http://localhost:8080/?file=http://www.joergkurtwegner.eu/foaf.xml&briefaccounts=true
+        briefaccounts_flag = self.request.get('briefaccounts','false')
+        logging.debug("Use brief account information = "+briefaccounts_flag)
         output = ''
         errors = []
         

@@ -46,6 +46,15 @@
             <a href="${url}" title="${a['homepage']}">\
             <img src="static/images/flickr.gif" border="0" alt="${a['homepage']}" /></a> \
             <i>${a['name']}</i>${getRssContainer(url)}<br/>
+        % elif a['homepage'].find('friendfeed') > -1:
+            <%
+            if url == '':
+                url = a['homepage'] + str(a['name'])
+            %>
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/friendfeed.jpg" border="0" alt="${a['homepage']}" /></a> \
+            <% rss = a['homepage'] + str(a['name'])+'?format=atom' %>
+            <i>${a['name']}</i>${getRssContainer(rss)}<br/>
         % elif a['homepage'].find('twitter.com') > -1:
             <% 
             if url == '':
@@ -115,6 +124,20 @@
             <a href="${url}" title="${a['homepage']}">\
             <img src="static/images/linkedin.png" border="0" alt="${a['homepage']}" /></a> \
             <i>${a['name']}</i><br/>         
+        % elif a['homepage'].find('slideshare') > -1:
+            <% 
+            if url == '':
+                url = a['homepage'] + str(a['name'])
+            %>                
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/slideshare.jpg" border="0" alt="${a['homepage']}" /></a> \
+            <% rss = a['homepage'] + 'rss/user/' + str(a['name']) %>
+            <i>${a['name']}</i>${getRssContainer(rss)}<br/>         
+        % elif a['homepage'].find('backtype') > -1:
+            <% if url == '': url = a['homepage'] %>    
+            <a href="${url}" title="${a['homepage']}">\
+            <img src="static/images/backtype.jpg" border="0" alt="${a['homepage']}" /></a> \
+            <i>${a['name']}</i><br/>
         % elif a['homepage'].find('upcoming') > -1:
             <% if url == '': url = a['homepage'] %>    
             <a href="${url}" title="${a['homepage']}">\
