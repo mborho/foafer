@@ -90,8 +90,8 @@ class DataObj(object):
         if not self.string:
             m =  re.match(r'"([^"]*)', self.dataStr)
             if m: string = m.group()
-            self.string = string[1:]            
-        return self.string.decode('unicode_escape').encode('utf-8')
+            self.string = string[1:]
+        return self.string.decode('unicode_escape','replace').encode('utf-8','ignore')
 
 class TriplePicker(object):
 
