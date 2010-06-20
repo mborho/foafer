@@ -1,3 +1,5 @@
+
+
 % if foafer.accounts:
     <tr><td class="propLabel">Accounts:</td><td class="propValue">
     <!-- debug
@@ -16,197 +18,142 @@
         %>
         
         % if a['homepage'].find('del.icio.us') > -1:
-            <%
-             if url == '':
-                url = a['homepage'] + str(a['name'])
-            %>
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/delicious.gif" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i>${getRssContainer(url)}<br/>
+
+            <% if url == '': url = a['homepage'] + str(a['name']) %>
+            ${h.account_block('delicious', a, url, url)}
+
         % elif a['homepage'].find('bm.doomicile.de') > -1:
-            <% 
-            if url == '':
-                url = a['homepage'] + 'bookmarks/' + str(a['name'])
-            %>
-            <a href="${a['homepage']}${a['name']}" title="${a['homepage']}">\
-            <img src="static/images/doomicile.png" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i>${getRssContainer(url)}<br/>
+
+            <%  if url == '': url = a['homepage'] + 'bookmarks/' + str(a['name']) %>
+            ${h.account_block('doomicile', a, url, url)}
+
         % elif a['homepage'].find('identi.ca') > -1:
-            <% 
-            if url == '':
-                url = a['homepage'] + str(a['name'])
-            %>
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/identica.png" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i>${getRssContainer(url)}<br/>
+
+            <%  if url == '': url = a['homepage'] + str(a['name']) %>
+            ${h.account_block('identica', a, url, url)}
+            
         % elif a['homepage'].find('livejournal') > -1:
-            <% 
-            if url == '':
-                url = 'http://' + str(a['name']) + '.livejournal.com'
-            %>
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/livejournal.gif" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i>${getRssContainer(url)}<br/>
+
+            <%  if url == '': url = 'http://' + str(a['name']) + '.livejournal.com' %>
+            ${h.account_block('livejournal', a, url, url)}
+            
         % elif a['homepage'].find('flickr') > -1:
-            <%
-            if url == '':
-                url = a['homepage'] + 'photos/' + str(a['name'])
-            %>
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/flickr.gif" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i>${getRssContainer(url)}<br/>
+
+            <% if url == '': url = a['homepage'] + 'photos/' + str(a['name']) %>
+            ${h.account_block('flickr', a, url, url)}
+            
         % elif a['homepage'].find('friendfeed') > -1:
-            <%
-            if url == '':
-                url = a['homepage'] + str(a['name'])
-            %>
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/friendfeed.jpg" border="0" alt="${a['homepage']}" /></a> \
+
+            <% if url == '': url = a['homepage'] + str(a['name']) %>
             <% rss = a['homepage'] + str(a['name'])+'?format=atom' %>
-            <i>${a['name']}</i>${getRssContainer(rss)}<br/>
+            ${h.account_block('friendfeed', a, url, rss)}
+
         % elif a['homepage'].find('twitter.com') > -1:
-            <% 
-            if url == '':
-                url = a['homepage'] + str(a['name'])
-            %>
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/twitter.png" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i>${getRssContainer(url)}<br/>
+
+            <%  if url == '': url = a['homepage'] + str(a['name']) %>
+            ${h.account_block('twitter', a, url, url)}
+
         % elif a['homepage'].find('last.fm') > -1:
-            <% 
-            if url == '':
-                url = a['homepage'] + 'user/' + str(a['name'])
-            %>
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/lastfm.png" border="0" alt="${a['homepage']}" /></a> \
+
+            <%  if url == '': url = a['homepage'] + 'user/' + str(a['name']) %>
             <% rss = 'http://ws.audioscrobbler.com/1.0/user/' + str(a['name']) + '/recenttracks.rss' %>
-            <i>${a['name']}</i>${getRssContainer(rss)}<br/>
+            ${h.account_block('lastfm', a, url, rss)}
+
         % elif a['homepage'].find('digg.com') > -1:
-            <% 
-            if url == '':
-                url = a['homepage'] + 'users/' + str(a['name'])
-            %>
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/digg.png" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>
+
+            <%  if url == '': url = a['homepage'] + 'users/' + str(a['name']) %>            
+            ${h.account_block('digg', a, url)}            
+
         % elif a['homepage'].find('jabber.org') > -1:
-            <% if url == '': url = a['homepage'] %>    
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/jabber.png" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>
+
+            ${h.account_block('jabber', a, url)}            
+
         % elif a['homepage'].find('icq.com') > -1:
-            <% if url == '': url = a['homepage'] %>    
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/icq.png" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>
+
+            ${h.account_block('icq', a, url)}            
+            
         % elif a['homepage'].find('messenger.msn') > -1:
-            <% if url == '': url = a['homepage'] %>                    
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/msn.png" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>
+
+            ${h.account_block('msn', a, url)}            
+            
         % elif a['homepage'].find('messenger.yahoo') > -1:
-            <% if url == '': url = a['homepage'] %>    
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/yahoo.png" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>
+
+            ${h.account_block('yahoo', a, url)}            
+            
         % elif a['homepage'].find('technorati') > -1:
-            <% 
-            if url == '':
-                url = a['homepage'] + 'people/technorati/' + str(a['name'])
-            %>
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/technorati.jpg" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>  
+
+            <%  if url == '':  url = a['homepage'] + 'people/' + str(a['name']) %>
+            ${h.account_block('technorati', a, url)}            
+
         % elif a['homepage'].find('deviantart') > -1:
-            <% 
-            if url == '': 
-                url = 'http://' + str(a['name']) + '.deviantart.com/'
-            %>
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/deviantart.png" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/> 
+
+            <%  if url == '':  url = 'http://' + str(a['name']) + '.deviantart.com/' %>
+            ${h.account_block('deviantart', a, url)}            
+
         % elif a['homepage'].find('linkedin.com') > -1:
-            <% 
-            if url == '':
-                url = a['homepage'] + 'profile?viewProfile=&amp;key=' + str(a['name'])
-            %>                
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/linkedin.png" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>         
+
+            <%  if url == '': url = a['homepage'] + 'profile?viewProfile=&amp;key=' + str(a['name']) %>                
+            ${h.account_block('linkedin', a, url)}            
+            
         % elif a['homepage'].find('slideshare') > -1:
-            <% 
-            if url == '':
-                url = a['homepage'] + str(a['name'])
-            %>                
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/slideshare.jpg" border="0" alt="${a['homepage']}" /></a> \
+
+            <%  if url == '': url = a['homepage'] + str(a['name']) %>                
             <% rss = a['homepage'] + 'rss/user/' + str(a['name']) %>
-            <i>${a['name']}</i>${getRssContainer(rss)}<br/>         
+            ${h.account_block('slideshare', a, url, rss)}
+            
         % elif a['homepage'].find('backtype') > -1:
-            <% if url == '': url = a['homepage'] %>    
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/backtype.jpg" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>
+
+            ${h.account_block('backtype', a, url)}  
+
         % elif a['homepage'].find('upcoming') > -1:
-            <% if url == '': url = a['homepage'] %>    
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/upcoming.jpg" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>
+
+            ${h.account_block('upcoming', a, url)}    
+
         % elif a['homepage'].find('wordpess') > -1:
-            <% if url == '': url = a['homepage'] %>    
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/wordpress.png" border="0" alt="${a['homepage']}"/></a> \
-            <i>${a['name']}</i><br/>
+
+            ${h.account_block('wordpress', a, url)}  
+
         % elif a['homepage'].find('wikipedia') > -1:
-            <% if url == '': url = a['homepage'] %>    
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/wikipedia.png" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>
+
+            ${h.account_block('wikipedia', a, url)}  
+
         % elif a['homepage'].find('audioscrobbler') > -1:
-            <% if url == '': url = a['homepage'] %>    
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/audioscrobbler.gif" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>
+
+            ${h.account_block('audioscrobbler', a, url)}
+            
         % elif a['homepage'].find('skype') > -1:
-            <% if url == '': url = a['homepage'] %>      
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/skype.gif" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>        
+
+            ${h.account_block('audioscrobbler', a, url)}
+            
         % elif a['homepage'].find('bloglines') > -1:
-            <% if url == '': url = a['homepage'] %>      
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/bloglines.gif" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>
+
+            ${h.account_block('bloglines', a, url)}
+
         % elif a['homepage'].find('myspace') > -1:
-            <% if url == '': url = a['homepage'] %>      
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/myspace.gif" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>
+
+            ${h.account_block('myspace', a, url)}
+            
         % elif a['homepage'].find('plazes') > -1:
-            <% if url == '': url = a['homepage'] %>      
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/plazes.png" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>
+
+            ${h.account_block('plazes', a, url)}
+            
         % elif a['homepage'].find('friendster') > -1:
+
             <% if url == '': url = 'http://profiles.friendster.com/' + str(a['name']) %>
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/friendster.gif" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>      
+            ${h.account_block('friendster', a, url)}
+            
         % elif a['homepage'].find('openfaq') > -1:
-            <% if url == '': url = a['homepage'] %>      
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/openfaq.png" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>
+
+            ${h.account_block('openfaq', a, url)}
+            
         % elif a['homepage'].find('facebook') > -1:
-            <% if url == '': url = a['homepage'] %>      
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/facebook.png" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>
+
+            ${h.account_block('facebook', a, url)}
+            
         % elif a['homepage'].find('twoday') > -1:
-            <% if url == '': url = a['homepage'] %>      
-            <a href="${url}" title="${a['homepage']}">\
-            <img src="static/images/twoday.png" border="0" alt="${a['homepage']}" /></a> \
-            <i>${a['name']}</i><br/>                
+
+            ${h.account_block('twoday', a, url)}
+            
         % else:
             <a href="${a['homepage']}">${a['homepage']}</a> <i>${a['name']}</i><br/>
         % endif

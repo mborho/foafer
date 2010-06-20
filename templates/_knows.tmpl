@@ -33,13 +33,13 @@
                         % for w in k['weblogs']:
                             <div>
                                 <a href="${w['uri']}" target="_blank">weblog</a>
-                                ${getRssContainer(w.get('uri'))}
+                                ${h.getRssContainer(w.get('uri'))}
                             </div>
                         % endfor                            
                     % endif                            
                     % if k.has_key('homepage'):
                         % for w in k['homepage']:
-                            <div><a href="${w['uri']}" target="_blank">homepage</a>${getRssContainer(w.get('uri'))}</div>
+                            <div><a href="${w['uri']}" target="_blank">homepage</a>${h.getRssContainer(w.get('uri'))}</div>
                         % endfor                            
                     % endif                            
                     % if k.has_key('workHomepage'):

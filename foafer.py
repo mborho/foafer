@@ -27,6 +27,7 @@ from mako.template import Template
 from mako.lookup import TemplateLookup
 from rdf.TriplePicker import Foafer
 from rdf import http
+import template_helpers
 
 logging.getLogger().setLevel(logging.DEBUG)
 
@@ -34,13 +35,6 @@ GMAP_KEY = 'PUT_YOUR_GMAP_KEY_HERE'
 
 TEMPLATE_PATH = os.path.dirname(__file__)+'/templates/'
 mylookup = TemplateLookup(directories=[TEMPLATE_PATH], input_encoding='utf-8', output_encoding='utf-8', encoding_errors='replace',default_filters=['decode.utf8'])
-    
-def getRssContainer(target, source_type=''):
-        div_id = re.sub('[^\w]','_',target)
-        ajax_div = ' <a href="" onclick="try {getRSS(\'%s\',\'%s\',\'auto\');} catch(e) {};return false;" id="link_%s" title="click for latest entries">' % (div_id, target, div_id)
-        ajax_div += '<script type="text/javascript">showInfoIcon();</script></a>'
-        ajax_div += '<div class="api_target" id="'+div_id+'"></div>'
-        return ajax_div
     
 class MainPage(webapp.RequestHandler):
     def get(self):
@@ -71,7 +65,7 @@ class MainPage(webapp.RequestHandler):
         if len(errors) == 0:
             try:
                 mytemplate = mylookup.get_template("index.tmpl")        
-                output = mytemplate.render(foafer=foafer,rdfuri=uri,getRssContainer=getRssContainer, gmapkey=GMAP_KEY, request=self.request)            
+                output = mytemplate.render(foafer=foafer,rdfuri=uri,h=template_helpers, gmapkey=GMAP_KEY, request=self.request)            
             except:
                 logging.error("rendering failed: %s" % uri)
                 errors.append('Problems with foaf file')
