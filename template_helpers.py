@@ -19,3 +19,15 @@ def account_block(name, account, url=None, rss=None):
         out += getRssContainer(rss)
     out +='<br/>'
     return out
+    
+          
+def account_block_brief(name, account, url=None, rss=None):
+    ''' acount block, icon has to be png '''
+    if url is None:
+        url = account.get('homepage','')
+    out = '<a href="%s" title="%s">' % (url, account.get('homepage','') )
+    out += '<img src="static/images/%s.png" border="0" alt="%s" align=top /></a>' % (name, account.get('homepage',''))
+    if rss:
+        out += '(<a href="%s" title="%s"><img src="static/images/rss3.jpg" border="0" alt="%s"  align=top /></a>)' % (rss,account.get('homepage',''),account.get('homepage',''))
+    out +=', '
+    return out

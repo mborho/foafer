@@ -46,8 +46,12 @@
 
             <% if url == '': url = a['homepage'] + str(a['name']) %>
             <% rss = a['homepage'] + str(a['name'])+'?format=atom' %>
-            ${h.account_block('friendfeed', a, url, rss)}
-
+            % if request.get('briefaccounts') == 'true':
+              ${h.account_block_brief('friendfeed', a, url, rss)}
+            % else:
+              ${h.account_block('friendfeed', a, url, rss)}
+            % endif
+               
         % elif a['homepage'].find('twitter.com') > -1:
 
             <%  if url == '': url = a['homepage'] + str(a['name']) %>
