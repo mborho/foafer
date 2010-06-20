@@ -22,7 +22,21 @@
                 <form action="" method="get">
                     <a href="/"><img src="static/images/foaf3.jpg" border="0" id="logo" /></a>
                     <div id="name">FOAFer</div><br/>
-                    <div id="input-uri">Please enter a FOAF-Resource: <input type="text" name="file" size="25" value="http://"/><input type="submit" value="go"/></div>
+                    <div id="input-uri"><br/>
+                    Please enter a FOAF-Resource: 
+                    %if rdfuri:
+                        <input type="text" name="file" size="35" value="${rdfuri}"/>
+                    %else:
+                        <input type="text" name="file" size="35" value="http://"/>
+                    % endif
+                    <br/>
+                    %if request.get('briefaccounts') == "true":
+                        <input type="checkbox" name="briefaccounts" value="true" checked /> Show accounts in brief format<br/>
+                    %else:
+                        <input type="checkbox" name="briefaccounts" value="true" /> Show accounts in brief format<br/>
+                    % endif
+                    
+                    <input type="submit" value="go"/></div>
                 </form>
             % else:
                 <a href="/"><img src="static/images/foaf3.jpg" border="0" id="logo" /></a>

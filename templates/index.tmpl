@@ -4,10 +4,12 @@
     <div id="main" class="ground wide">
         <div class="inner">
             <div>
-                    <a href="${rdfuri}"><img src="/static/images/foafTiny.gif" border="0" style="margin-top:2px;"/></a>
-                    <a href="http://demo.openlinksw.com/rdfbrowser/?uri=${rdfuri|u}" target="_blank"><img src="/static/images/openlink.png" border="0" style="margin-top:2px;"/></a>
-                    <a href="http://dataviewer.zitgist.com/?uri=${rdfuri|u}" target="_blank"><img src="/static/images/zitgist.png" border="0" style="margin-top:2px;"/></a>
-                    -> ${rdfuri}
+                    <!-- does not work, for me, JKW -->
+                    <!-- <a href="http://demo.openlinksw.com/rdfbrowser/?uri=${rdfuri|u}" target="_blank"><img src="/static/images/openlink.png" border="0" style="margin-top:2px;"/> browse</a>, -->
+                    <a href="http://foaf-visualizer.org/?uri=${rdfuri|u}&hl=en" target="_blank"><img src="/static/images/foafTiny.gif" border="0" style="margin-top:2px;"/> browse</a>
+                    <a href="http://dataviewer.zitgist.com/?uri=${rdfuri|u}" target="_blank"><img src="/static/images/zitgist.png" border="0" style="margin-top:2px;"/> browse</a>,
+                    <a href="http://www.w3.org/RDF/Validator/ARPServlet?URI=${rdfuri|u}&PARSE=Parse+URI:+&TRIPLES_AND_GRAPH=PRINT_BOTH&FORMAT=PNG_EMBED" target="_blank"><img src="/static/images/rdf.jpg" border="0" style="margin-top:2px;"/> validate</a>
+                    your <a href="${rdfuri}"><img src="/static/images/foafTiny.gif" border="0" style="margin-top:2px;"/> FOAF</a>.
             </div>
             <div style="width:800px;">
             <!--div style="float:left;padding-top:5px;border:1px solid #000;"-->
@@ -80,7 +82,7 @@
                     
                     % if foafer.myers:
                         <tr><td class="propLabel">myersBriggs:</td>
-                        <td class="propValue">${foafer.myers}</td></tr>
+                        <td class="propValue"><a href="http://en.wikipedia.org/wiki/${foafer.myers}">${foafer.myers}</a></td></tr>
                     % endif
                     
                     % if foafer.plan:
@@ -183,7 +185,9 @@
         <form action="" method="get">
             <a href="/"><img src="static/images/foaf3.jpg" border="0" id="logo" /></a>
             <div id="name">FOAFer</div><br/>
-            <div id="input-uri">Please enter a FOAF-Resource: <input type="text" name="file" size="30" value="http://"/><input type="submit" value="go"/></div>
+            <div id="input-uri">Please enter a FOAF-Resource: <input type="text" name="file" size="30" value="http://"/><br/
+            <input type="checkbox" name="briefaccounts" value="true" /> Show accounts in brief format<br/>
+            <input type="submit" value="go"/></div>
         </form>
     </div>
     

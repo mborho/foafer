@@ -4,6 +4,7 @@
 # 
 # FOAFer
 # Copyright (C) 2003, 2010, Martin Borho <martin@borho.net>
+# Copyright (C) 2010, JKW, Joerg Kurt Wegner <me@joergkurtwegner.eu>
 # 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -17,6 +18,9 @@
 # 
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Changelog
+# 2010-06-20: JKW, Corrected accountServiceHomepage readout
 #
 
 import re
@@ -685,12 +689,27 @@ class Foafer(TriplePicker):
                 if type(resource) is dict:
                     for x in resource.iterkeys():
                         r = {}
+                        logging.debug("account:name=%s" % (self.get(self.ns_foaf+'accountName', resource[x])))
                         r['name'] = self.get(self.ns_foaf+'accountName', resource[x])
-                        r['page'] = self.cleanURI(self.get(self.ns_foaf+'accountProfilePage', resource[x]))
                         ahp = self.cleanURI(self.get(self.ns_foaf+'accountServiceHomepage', resource[x]))
                         if ahp is None:
                             continue
 
+                        app = self.cleanURI(self.get(self.ns_foaf+'accountProfilePage', resource[x]))
+                        if app:
+	                        typeOf = type(app)
+	                        pp=''
+	                        if typeOf is dict:
+	                            #with extra property, extract only account homepage
+	                            pp = self.cleanURI(app.keys()[0])
+	                        elif typeOf is str:
+	                            pp = app
+	
+	                        if pp[-1] != "/":
+	                            pp += "/"
+	                        r['page'] = pp 
+	                        logging.debug("account:accountProfilePage=%s" % r['page'])
+                        
                         typeOf = type(ahp)
                         hp=''
                         if typeOf is dict:
@@ -703,6 +722,7 @@ class Foafer(TriplePicker):
                         if hp[-1] != "/":
                             hp += "/"
                         r['homepage'] = hp
+                        logging.debug("account:accountServiceHomepage=%s" % r['homepage'])
                         accounts.append(r)
         return accounts
 
