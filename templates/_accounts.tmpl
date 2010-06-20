@@ -1,5 +1,14 @@
 % if foafer.accounts:
     <tr><td class="propLabel">Accounts:</td><td class="propValue">
+    <!-- debug
+       RDF File: ${request.get('file')}
+
+        Hier eine Parameter Bedingung: &briefaccounts=true
+
+       % if request.get('briefaccounts') == "true":
+            briefaccounts
+        % endif
+    -->
     % for a in foafer.accounts:
         <% 
         if a.get('page'): url = a['page']

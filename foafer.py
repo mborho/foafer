@@ -48,12 +48,7 @@ class MainPage(webapp.RequestHandler):
         rdf = None
         logging.debug("URI arguments:  "+str(self.request.arguments()))
         uri = self.request.get('file','start')
-        logging.debug("Loading FOAF file"+uri)
         
-        #TODO -@mborho - How can we forward this property for allowing us customized tweaking of the _accounts.tmpl?
-        # ExampleURL http://localhost:8080/?file=http://www.joergkurtwegner.eu/foaf.xml&briefaccounts=true
-        briefaccounts_flag = self.request.get('briefaccounts','false')
-        logging.debug("Use brief account information = "+briefaccounts_flag)
         output = ''
         errors = []
         
@@ -76,7 +71,7 @@ class MainPage(webapp.RequestHandler):
         if len(errors) == 0:
             try:
                 mytemplate = mylookup.get_template("index.tmpl")        
-                output = mytemplate.render(foafer=foafer,rdfuri=uri,getRssContainer=getRssContainer, gmapkey=GMAP_KEY)            
+                output = mytemplate.render(foafer=foafer,rdfuri=uri,getRssContainer=getRssContainer, gmapkey=GMAP_KEY, request=self.request)            
             except:
                 logging.error("rendering failed: %s" % uri)
                 errors.append('Problems with foaf file')
