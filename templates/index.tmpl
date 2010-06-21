@@ -181,13 +181,16 @@
     
 % elif rdfuri == "start":
     
-    <div style="margin-left:135px;margin-top:50px;margin-bottom:100px;">
+    <div class="wide" style="margin-left:135px;margin-top:50px;margin-bottom:100px;">
         <form action="" method="get">
             <a href="/"><img src="static/images/foaf3.jpg" border="0" id="logo" /></a>
             <div id="name">FOAFer</div><br/>
-            <div id="input-uri">Please enter a FOAF-Resource: <input type="text" name="file" size="30" value="http://"/><br/
-            <input type="checkbox" name="briefaccounts" value="true" /> Show accounts in brief format<br/>
-            <input type="submit" value="go"/></div>
+            <div class="input-uri">Please enter a FOAF-Resource: <input type="text" name="file" size="30" value="http://"/> <input type="submit" value="go"/></div>
+            <div class="input-uri" style="font-size:90%;">            
+                <input type="checkbox" name="briefaccounts" value="true" /> Show accounts in brief format 
+            </div>
+            </div>
+            
         </form>
     </div>
     

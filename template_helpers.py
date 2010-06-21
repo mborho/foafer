@@ -41,7 +41,7 @@ def account_block(name, account, url=None, rss=None, brief=None):
         out += '[<a href="%s" title="%s">rss</a>]' % (rss,account.get('homepage',''))
       out +=', '
     else:
-      out += '<i>%s</i>' % account.get('name','')
+      out += '&#160;&#160;<i>%s</i>&#160;' % account.get('name','')
       if rss:
           out += getRssContainer(rss)
       out +='<br/>'

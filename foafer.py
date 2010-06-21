@@ -72,7 +72,7 @@ class MainPage(webapp.RequestHandler):
                 
         if len(errors) > 0:
             mytemplate = mylookup.get_template("error.tmpl")        
-            output = mytemplate.render(errors = errors,rdfuri=uri)
+            output = mytemplate.render(errors = errors,rdfuri=uri,request=self.request)
 
         self.response.out.write(output)            
 

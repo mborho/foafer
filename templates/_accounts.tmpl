@@ -199,9 +199,10 @@
             
         % else:
             % if brief == 'true':
-              <a href="${a['homepage']}">${a['homepage']}</a>,
+              <a href="${a['homepage']}"><img src="static/images/account.png" border="0" alt="${a['homepage']}" title="${a['homepage']}" /></a>,
             % else:
-              <a href="${a['homepage']}">${a['homepage']}</a> <i>${a['name']}</i><br/>
+              <a href="${a['homepage']}"><img src="static/images/account.png" border="0" alt="${a['homepage']}" title="${a['homepage']}"/></a>               
+                &#160;<i>${a['name']}</i> <a href="${a['homepage']}">${a['homepage'][:-1].replace('http://','')}</a><br/>
             % endif
         % endif
     % endfor    

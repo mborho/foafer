@@ -40,9 +40,8 @@
     float:left;
 }
 
-#input-uri {
-    display:inline;
-    margin-left:40px;
+.input-uri {
+    margin-left:50px;  
 }
 
 #info,.info {
