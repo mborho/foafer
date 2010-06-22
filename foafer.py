@@ -95,7 +95,7 @@ class DataApi(webapp.RequestHandler):
 class Supports(webapp.RequestHandler):
     def get(self):            
         mytemplate = mylookup.get_template("supports.tmpl")        
-        output = mytemplate.render()
+        output = mytemplate.render(request=self.request)
         self.response.out.write(output)
         
 def main():
