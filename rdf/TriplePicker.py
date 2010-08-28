@@ -263,6 +263,9 @@ class Foafer(TriplePicker):
                 elif g.startswith('<http://xmlns.com/foaf/0.1/'):
                     ns = 'http://xmlns.com/foaf/0.1/'
                     ns_checked = True
+                elif g.startswith('<http://xmlns.com/foaf/1.0/'):
+                    ns = 'http://xmlns.com/foaf/1.0/'
+                    ns_checked = True
                 elif g.startswith('<http://xmlns.com/foaf/'):
                     ns = 'http://xmlns.com/foaf/'
                     ns_checked = True
