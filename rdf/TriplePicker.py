@@ -166,13 +166,8 @@ class TriplePicker(object):
         for triple in self.triples:
             if len(triple) != 3:
                 continue
-            #print '###\n'
-            #print triple
-            #print '###\n'
+
             if not self.dict.has_key(triple[0]):
-                if not self.about:
-                    self.about = triple[0]
-                    #self.dict[triple[0]] = [triple[1:]]
                 self.dict[triple[0]] = {triple[1]:[triple[2]]}
                 #self.dict[triple[0]][triple[1][] = [triple[2]]
             else:
@@ -255,22 +250,21 @@ class Foafer(TriplePicker):
     def setNs(self):
         ns =  'http://xmlns.com/foaf/0.1/'
         ns_checked = None
-        while not ns_checked:
-            for g in self.graph:
-                if g.startswith('<http://xmlns.com/foaf/spec'):
-                    ns = 'http://xmlns.com/foaf/spec/'
-                    ns_checked = True
-                elif g.startswith('<http://xmlns.com/foaf/0.1/'):
-                    ns = 'http://xmlns.com/foaf/0.1/'
-                    ns_checked = True
-                elif g.startswith('<http://xmlns.com/foaf/1.0/'):
-                    ns = 'http://xmlns.com/foaf/1.0/'
-                    ns_checked = True
-                elif g.startswith('<http://xmlns.com/foaf/'):
-                    ns = 'http://xmlns.com/foaf/'
-                    ns_checked = True
-        self.ns_foaf = ns
-
+        for t in self.triples:
+            if t[1].startswith('<http://xmlns.com/foaf/spec'):
+                ns = 'http://xmlns.com/foaf/spec/'
+                break
+            elif t[1].startswith('<http://xmlns.com/foaf/0.1/'):
+                ns = 'http://xmlns.com/foaf/0.1/'
+                break
+            elif t[1].startswith('<http://xmlns.com/foaf/1.0/'):
+                ns = 'http://xmlns.com/foaf/1.0/'
+                break
+            elif t[1].startswith('<http://xmlns.com/foaf/'):
+                ns = 'http://xmlns.com/foaf/'
+                break
+        self.ns_foaf = ns                
+        
     def setRelNs(self):
         namespaces = ['http://www.perceive.net/schemas/20021119/relationship/relationship.rdf#','http://purl.org/vocab/relationship/rel-vocab-20040308.rdf#']
         for n in namespaces:
@@ -286,49 +280,36 @@ class Foafer(TriplePicker):
         if self.errors:
             return None
         self.graph = None
+        try:
+            self.setNs()
+            about = None
+            # first set pick the first person with a foaf property a self.about
+            for t in self.triples:
+                if t[1].startswith('<'+self.ns_foaf):
+                    self.about = t[0]
+                    break
 
-        about = None
-        while True:
-            a = self.guessOwner()
-            if a:
-                self.about = a
+            while True:                    
+                # then make a more estimated guessing 
+                a = self.guessOwner()
+                if a:
+                    self.about = a
+                    break
+                    
+                props_to_check = ['primaryTopic','topic','currentProject','holdsAccount','myersBriggs',
+                                    'depiction','nick']                                
+                for prop in props_to_check:
+                    a = self.find({'s':None,'p':"<"+self.ns_foaf+prop+">",'o':None},False)
+                    if a:
+                        self.about = a[2]
+                        break
                 break
-
-            a = self.find({'s':None,'p':"<"+FOAF+"primaryTopic>",'o':None},False)
-            if a:
-                self.about = a[2]
-                break
-
-            a = self.find({'s':None,'p':"<"+FOAF+"topic>",'o':None},False)
-            if a:
-                self.about = a[2]
-                break
-
-            a = self.find({'s':None,'p':"<"+FOAF+"currentProject>",'o':None},False)
-            if a:
-                self.about = a[0]
-                break
-
-            a = self.find({'s':None,'p':"<"+FOAF+"holdsAccount>",'o':None},False)
-            if a:
-                self.about = a[0]
-                break
-
-            a = self.find({'s':None,'p':"<"+FOAF+"myersBriggs>",'o':None},False)
-            if a:
-                self.about = a[0]
-                break
-                
-            a = self.find({'s':None,'p':"<"+FOAF+"depiction>",'o':None},False)
-            if a:
-                self.about = a[0]
-                break                
-            break            
-        #for t in self.triples:print t
-        self.graph = self.dict[self.about]
-        self.setNs()
-        self.setRelNs()
-        self.buildContainers()
+            
+            self.graph = self.dict[self.about]
+            self.setRelNs()
+            self.buildContainers()
+        except Exception, e:
+            self.errors.append('Data extraction failed, FOAF data seems invalid.') 
 
     def guessOwner(self):
         owner = None
