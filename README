@@ -30,7 +30,9 @@ Download rdflib source package from http://www.rdflib.net/ and copy the folder
 Download mako source package from http://www.makotemplates.org/download.html and copy the folder
 ./lib/mako in your foafer app folder.    
 
-
+TODO
+======
+SPARQL finally owrks on appengine with rdflib 3
 
 License
 =======
