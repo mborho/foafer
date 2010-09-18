@@ -5,11 +5,21 @@ rdflib.plugin.register('sparql', rdflib.query.Processor,
                        'rdfextras.sparql.processor', 'Processor')
 rdflib.plugin.register('sparql', rdflib.query.Result,
                        'rdfextras.sparql.query', 'SPARQLQueryResult')
-                       
+
+class Person(object):
+    
+    def __init__(self):
+        self.name = None
+        self.nick = []
+        self.weblog = []
+        self.homepage = []
+        self.seeAlso = None
+        
 class Foafer (object):
     
     def __init__(self, uri):
         self.uri = uri
+        self.about = Person()
         self.graph = Graph()        
         self.graph.parse(uri)
 
@@ -28,9 +38,13 @@ class Foafer (object):
                     }''')
                     
         result = {}
+        
         for row in query:  
-            result = {'name':row[0],'homepage':row[1],'weblog':row[2], 
-                       'nick':row[3],'seeAlso':row[4]}
+            self.about.name = row[0]
+            self.about.homepage.append(row[1])
+            self.about.weblog.append(row[2])
+            self.about.nick.append(row[3])
+            self.about.seeAlso.append(row[4])
             
         #print result
         return result
